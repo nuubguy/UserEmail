@@ -1,19 +1,23 @@
 var express = require('express');
-let PlayerModel = require('../model/player');
-let UserOkResponse = require('../dto/UserResponse');
+
+let UserResponse = require('../dto/UserResponse');
+let UserController = require('../controller/UserController');
+let initController = new UserController();
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/check', function(req, res, next) {
 
-});
 
 router.post('/save', function(req, res, next) {
-  PlayerModel.create(req.body, function (err, awesome_instance) {
-    if (err) return res.send(500,err);
+  let result = new UserResponse();
+  
+  // if(/^\S+@\S+\.\S+$/.test(req.body.email)==false)
+  //   return res.send(400,result.ErrorResponse(req.body.email))
+
+  // UserModel.create(new UserModel({name:req.body.name,email:req.body.email,status:req.body.status}), function (err, awesome_instance) {
+  //   if (err) return res.send(500,err);
     
-    return res.send(200,new UserOkResponse(awesome_instance._id,awesome_instance._id.name,null,awesome_instance.status));
-  });
+  //   return res.send(200,result.UserOkResponse(awesome_instance._id,awesome_instance.name,awesome_instance.email,true));
+  // });
 });
 
 
