@@ -5,20 +5,24 @@ class UserDAO{
     }
 
     findOneBasedOneEmail(email){
-        return UserModel.findOne({email:email}).exec((err,currentUser)=>{
+        return UserModel.find({email:email}).exec((err,currentUser)=>{
+            
             if(err)return null;
 
+            console.log(currentUser);
+            
             return currentUser;
-        })
+        });
     }
 
-    saveUser(userRequest){
-        UserModel.create(new UserModel({name:userRequest.name,email:userRequest.email,status:true}), function (err, awesome_instance) {
-            if (err) return err;
-            
-            return awesome_instance;
-          });
-    }
+     saveUser(userRequest){
+                let inputUser =new UserModel({name:userRequest.name,email:userRequest.email,status:true});
+                 inputUser.save((err)=>{
+                     if(err)
+                     return handleError(err);
+                 });
+                return inputUser;
+            }
 }
 
 module.exports = UserDAO;

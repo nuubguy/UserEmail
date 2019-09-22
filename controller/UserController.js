@@ -1,13 +1,10 @@
 let UserService = require('../service/UserService');
+let initUserService = new UserService();
+let UserModel = require('../model/UserModel');
 
-class UserController{
-    constructor(){
-        this.userService = new UserService();
-    }
+exports.saveUser = (req,res)=>{
 
-    saveUser(req,res,next){
-        let result = this.userService.saveUser(req);
 
-        return res.send(result.code,result);
-    }
+    let result = initUserService.saveUser(req.body);
+    res.send(result.code,result);
 }

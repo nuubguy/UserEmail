@@ -9,9 +9,7 @@ class UserService{
     }
 
     saveUser(userRequest){
-        if(this.userDAO.findOneBasedOneEmail(userRequest.email)!=null)
-        return this.userResponse.ErrorResponse(userRequest.email);
-
+        
         if(!/^\S+@\S+\.\S+$/.test(userRequest.email))
         return this.userResponse.ErrorResponse(userRequest.email);
 

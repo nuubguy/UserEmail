@@ -5,12 +5,16 @@ class UserResponse{
        
       }
 
-      UserOkResponse  (id,name, email, status){
-        return {id :id, name:name, email:email, status:status,code:200};
+      UserOkResponse  (userRequest){
+        return {name:userRequest.name, email:userRequest.email, status:userRequest.status,code:200};
       }
       ErrorResponse(email){
         return {email:email,message:'is invalid',status:false,code:400}
       }
+      badRequest(email){
+                  return {email:email,message:'already exist',status:false,code:409}
+              }
+
 }
 
 
