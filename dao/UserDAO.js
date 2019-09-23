@@ -4,14 +4,10 @@ class UserDAO{
     constructor(){
     }
 
-    findOneBasedOneEmail(email){
-        return UserModel.find({email:email}).exec((err,currentUser)=>{
-            
-            if(err)return null;
+    async findOneBasedOneEmail(email){
+        return UserModel.find({email:email}).exec().then(result=>{
 
-            console.log(currentUser);
-            
-            return currentUser;
+            return {a:"a"};
         });
     }
 
